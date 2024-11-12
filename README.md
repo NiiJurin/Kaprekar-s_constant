@@ -12,4 +12,16 @@
 3. 8532 - 2358 = 6174
 このように、数が「6174」に達し、その後は 6174 - 1467 = 6174 となり、同じ数に収束します。
 
-## 
+## 実行方法
+### 前提条件
+dotnet CLIを使用できる環境
+### dotnet-scriptのインストール
+dotnet CLI を使ってdotnet-scriptをインストールする必要があります。
+~~~
+dotnet tool install -g dotnet-script
+~~~
+
+### C#スクリプトを実行
+~~~
+dotnet-script Kaprekar-s_constant.csx
+~~~
