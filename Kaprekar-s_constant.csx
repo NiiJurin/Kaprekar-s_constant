@@ -17,33 +17,29 @@ if (A.Length ==2)
 
 if (x.ToString().Length == 4 )
 {
-    int i = 0;
-    int t = 0;
-    while( i == 0 )
+
+    int previousResult = -1;
+    int currentResult = x;
+
+    while (currentResult != previousResult)
     {
-        var (a1,a2,a3,a4) = Decomposition(x);
-        var ResultS = GetS(a1, a2, a3, a4);
-        var ResultL = GetL(a1, a2, a3, a4);
-        var Result = Calculation(ResultL,ResultS);
-        Console.WriteLine(Result);
-        if(Result == t)
-        {
-            i = 1;
-        }
-        t = Result;
-        x = Result;
+        previousResult = currentResult;
+        var (a1, a2, a3, a4) = Decompose(currentResult);
+        int resultS = GetS(a1, a2, a3, a4);
+        int resultL = GetL(a1, a2, a3, a4);
+        currentResult = resultL - resultS;
+        Console.WriteLine(currentResult);
     }
 
 }
 
 //4桁の分解
-(int, int, int, int)Decomposition(int x)
+(int, int, int, int)Decompose(int x)
 {
     int a1 = int.Parse(x.ToString()[0].ToString());
     int a2 = int.Parse(x.ToString()[1].ToString());
     int a3 = int.Parse(x.ToString()[2].ToString());
     int a4 = int.Parse(x.ToString()[3].ToString());
-    // int[] numbers = {a1,a2,a3,a4};
     return (a1,a2,a3,a4);
 }
 
@@ -53,8 +49,8 @@ int GetS(int a, int b, int c, int d)
     int[] NumberS = {a,b,c,d};
     Array.Sort(NumberS);
     string SmallNumber = string.Join("", NumberS);
-    int ResultS = int.Parse(SmallNumber);
-    return ResultS;
+    return int.Parse(SmallNumber);
+    
 }
 int GetL(int a, int b, int c, int d)
 {  
@@ -62,8 +58,7 @@ int GetL(int a, int b, int c, int d)
     Array.Sort(NumberL);
     Array.Reverse(NumberL);
     string LargeNumber = string.Join("", NumberL);
-    int ResultL = int.Parse(LargeNumber);
-    return ResultL;
+    return int.Parse(LargeNumber);
 }
 int Calculation(int L,int S)
 {
